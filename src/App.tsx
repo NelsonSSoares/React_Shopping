@@ -1,12 +1,21 @@
-import './App.css'
+import { Home } from "./screens/home"
+import { Cart } from "./screens/cart"
+import { createBrowserRouter } from "react-router-dom"
+import { Layout } from "./components/layout"
 
-function App() {
-
-  return (
-    <div>
-      <h1>HOME</h1>
-    </div>
-  )
-}
-
-export default App
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
+      }
+    ]
+  }
+])
+export { router };
