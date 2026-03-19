@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { api } from "../../services/api";
+import { useContext } from "react";
 import type { Product } from "../../types/products";
+import { CartContext } from "../../context/CartContext";
 
 export function Home() {
   const [products, setProducts] = useState<Product[]>([]);
+  const { addItemCart } = useContext(CartContext);
 
   useEffect(() => {
     async function getProducts() {
@@ -14,7 +17,11 @@ export function Home() {
     getProducts();
   }, []);
 
-  return (
+  function handleAddCartItem(product: Product) {
+     addItemCart(product);
+  }
+
+  return (  
     <div>
       <main className="w-full max-w-7xl px-4 mx-auto">
         <h1 className="font-bold text-2xl mb-4 mt-10 text-center">
@@ -34,7 +41,7 @@ export function Home() {
               <div className="flex gap-3 items-center">
                 <strong className="text-zinc700/90">
                 R$ {product.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2 })}</strong>
-                <button className="bg-zinc-900 p-1 rounded">
+                <button onClick={()=> handleAddCartItem(product)} className="bg-zinc-900 p-1 rounded">
                   <BsCartPlus size={20} color="#fff" />
                 </button>
               </div>
