@@ -42,7 +42,7 @@ export function Home() {
                 <strong className="text-zinc700/90">
                 R$ {product.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2 })}</strong>
                 <button onClick={()=> handleAddCartItem(product)} className="bg-zinc-900 p-1 rounded">
-                  <BsCartPlus size={20} color="#fff" />
+                  <BsCartPlus className="cursor-pointer" size={20} color="#fff" />
                 </button>
               </div>
             </section>
