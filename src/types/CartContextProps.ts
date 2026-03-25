@@ -5,4 +5,6 @@ export interface CartContextProps {
     cart: CartProps[];
     cartAmount: number;
     addItemCart: (newItem: Product) => void;
+    removeItemCart: (product: CartProps) => void;
+    total: string;
 }
