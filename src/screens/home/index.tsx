@@ -4,7 +4,7 @@ import { api } from "../../services/api";
 import { useContext } from "react";
 import type { Product } from "../../types/products";
 import { CartContext } from "../../context/CartContext";
-
+import { toast } from "react-hot-toast";
 export function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { addItemCart } = useContext(CartContext);
@@ -19,6 +19,13 @@ export function Home() {
 
   function handleAddCartItem(product: Product) {
      addItemCart(product);
+     toast.success("Produto adicionado ao carrinho!",{
+      style:{
+        borderRadius: 10,
+        backgroundColor: "#121212",
+        color: "#fff",
+      }
+     });
   }
 
   return (  

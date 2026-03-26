@@ -29,8 +29,8 @@ function CartProvider({ children }: CartProviderProps){
     }
 
     function totalResultCart(items: CartProps[]){
-        let myCart = items;
-        let result = myCart.reduce((acc, item)=>{return acc + item.total}, 0);
+        const myCart = items;
+        const result = myCart.reduce((acc, item)=>{return acc + item.total}, 0);
         const formatedResult = result.toLocaleString("pt-BR", {  style: "currency", currency: "BRL", });
         setTotalCart(formatedResult);
     }
