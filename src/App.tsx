@@ -2,6 +2,7 @@ import { Home } from "./screens/home"
 import { Cart } from "./screens/cart"
 import { createBrowserRouter } from "react-router-dom"
 import { Layout } from "./components/layout"
+import { ProductDetail } from "./screens/detail"
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />
+      },
+      {
+        path: "/product/:id",
+        element: <ProductDetail />
       }
     ]
   }

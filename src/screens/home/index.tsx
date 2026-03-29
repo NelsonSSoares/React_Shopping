@@ -5,9 +5,12 @@ import { useContext } from "react";
 import type { Product } from "../../types/products";
 import { CartContext } from "../../context/CartContext";
 import { toast } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+
 export function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { addItemCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getProducts() {
@@ -18,14 +21,14 @@ export function Home() {
   }, []);
 
   function handleAddCartItem(product: Product) {
-     addItemCart(product);
-     toast.success("Produto adicionado ao carrinho!",{
+    toast.success("Produto adicionado ao carrinho!",{
       style:{
         borderRadius: 10,
         backgroundColor: "#121212",
         color: "#fff",
       }
-     });
+    });
+    addItemCart(product);
   }
 
   return (  
@@ -38,13 +41,14 @@ export function Home() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
           {products.map((product) => (
             <section key={product.id} className="w-full ">
+              <Link to={`/product/${product.id}`}>
               <img
                 className="w-full rounded-lg max-h-70 mb-2 "
                 src={product.cover}
                 alt={product.title}
               />
               <p className="font-medium mt-1 mb-2">{product.title}</p>
-
+              </Link>
               <div className="flex gap-3 items-center">
                 <strong className="text-zinc700/90">
                 R$ {product.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2 })}</strong>
