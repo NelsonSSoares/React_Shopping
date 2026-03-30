@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-import { BsCartPlus } from "react-icons/bs";
-import { api } from "../../services/api";
-import { useContext } from "react";
-import type { Product } from "../../types/products";
-import { CartContext } from "../../context/CartContext";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { BsCartPlus } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
+import { api } from "../../services/api";
+import type { Product } from "../../types/products";
 
 export function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const { addItemCart } = useContext(CartContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function getProducts() {
